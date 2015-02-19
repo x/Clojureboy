@@ -129,7 +129,6 @@
   (mmu/wb (word @r1 @r2) @r3)
   (reset! rM 2))
 
-
 (def instructions
   [;; 00x NOP
    (fn NOP []
@@ -211,6 +210,73 @@
    (fn LD-DEm-A []
      (LD-mem-register rD rE rA))
 
+   ;; 13x INC DE
+   (fn INC-DE []
+     (INC-register-pair rD rE))
+
+   ;; 14x INC D
+   (fn INC-D []
+     (INC-register rD))
+
+   ;; 15x DEC D
+   (fn DEC-D []
+     (DEC-register rD))
+
+   ;; 16x LD D,n
+   (fn LD-D-n []
+     (LD-register-n rD))
+
+   ;; 17x RL A
+   (fn RL-A []
+     nil)
+
+   ;; 18x JR n
+   (fn JR-n []
+     nil)
+
+   ;; 19x ADD HL,DE
+   (fn ADD-HL-DE []
+     nil)
+
+   ;; 1Ax LD A,(DE)
+   (fn LD-A-DEm []
+     (LD-register-mem rA rD rE))
+
+   ;; 1Bx DEC DE
+   (fn DEC-DE []
+     (DEC-register-pair rD rE))
+
+   ;; 1Cx INC C
+   (fn INC-C []
+     (INC-register rE))
+
+   ;; 1Dx DEC C
+   (fn DEC-C []
+     (DEC-register rE))
+
+   ;; 1Ex LD C,n
+   (fn LD-C-n []
+     (LD-register-n rE))
+
+   ;; 1Fx RRC A
+   (fn RRC-A []
+     nil)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    ;; 13x LDI (HL),A
    (fn LDI-HLm-A []
      nil)
@@ -219,7 +285,7 @@
    (fn INC-HL []
      (INC-register-pair rH rL))
 
-   ;; 15x INC HL
+   ;; 15x INC H
    (fn INC-H []
      (INC-register rH))
 
