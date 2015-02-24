@@ -1,15 +1,16 @@
 (ns clojureboy.op-protocols)
 
-(defprotocol Mutatable
-  (LD [this val])
-  (INC [this])
-  (DEC [this]))
+(defprotocol Resetable
+  (RESET [this]))
 
 (defprotocol ByteContainer
   (read-byte [this]))
 
 (defprotocol WordContainer
   (read-word [this]))
+
+(defprotocol InferredLoads
+  (LD [this container]))
 
 (defprotocol ByteLoads
   (LD [this byte-container])
@@ -36,8 +37,8 @@
 
 (defprotocol WordArithmetic
   (ADD [this word-container])
-  (INC [this word-container])
-  (DEC [this word-container]))
+  (INC [this])
+  (DEC [this]))
 
 ;; Not sure if we need these just yet
 (defprotocol ByteRotate

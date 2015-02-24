@@ -1,11 +1,11 @@
 (ns clojureboy.bit-smashers)
 
 (defn set-flag
-  [b h]
+  [b f]
   (bit-or b f))
 
 (defn flag?
-  []
+  [b f]
   (= (bit-and b f) f))
 
 (defn inc-byte
@@ -18,15 +18,15 @@
   [b]
   (bit-and (dec b) 0xFF))
 
-(defn undeflowed?
+(defn underflowed?
   "Tells if byte b, the result of dec-byte, has underflowed."
-  [v]
-  (= 255 v))
+  [b]
+  (= 255 b))
 
 (defn overflowed?
   "Tells if byte b, the result of inc-byte, has overflowed."
   [b]
-  (= 0 v))
+  (= 0 b))
 
 (defn bytes-to-word
   [b1 b2]
@@ -35,4 +35,4 @@
 (defn word-to-bytes
   [w]
   [(bit-shift-right w 8)
-   (bit-and 0xFF w)]
+   (bit-and 0xFF w)])

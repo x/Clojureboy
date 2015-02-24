@@ -1,4 +1,4 @@
-(ns clojure.registers.private)
+(ns clojureboy.registers.mutables)
 
 (def mutable-a (atom 0))
 (def mutable-b (atom 0))
@@ -13,9 +13,10 @@
 (def mutable-m (atom 0))
 (def mutable-t (atom 0))
 
-
 (ns clojureboy.registers
-  (:require [datatypes :refer :all]))
+  (:require [clojureboy.registers.mutables :refer :all]
+            [clojureboy.datatypes])
+  (:import [clojureboy.datatypes ByteRegister WordRegister RegisterPair]))
 
 ;; 8-bit registers
 (def A (ByteRegister. mutable-a mutable-f mutable-m)) ;; accumulator
@@ -33,5 +34,5 @@
 (def HL (RegisterPair. mutable-h mutable-l mutable-f mutable-m))
 
 ;; 16-bit registers
-(def PC (ByteRegister. mutable-pc mutable-f mutable-m)) ;; program counter
-(def SP (ByteRegister. mutable-sp mutable-f mutable-m)) ;; stack pointer
+(def PC (WordRegister. mutable-pc mutable-f mutable-m)) ;; program counter
+(def SP (WordRegister. mutable-sp mutable-f mutable-m)) ;; stack pointer
