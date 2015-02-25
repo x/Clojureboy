@@ -49,25 +49,23 @@
   (reset! stop 0)
   (println "z80 reset!"))
 
-(print-table (:members (r/reflect BC)))
+(def instructions
+  [;; 00x
+   #(NOP)          #(.LD BC nn)    #(.LD (BC) A)   #(.INC BC)
+   #(.INC B)       #(.DEC B)       #(.LD B n)      #(.RLC A)
+   #(.LD (nn) SP)  #(.ADD HL BC)   #(.LD A (BC))   #(.DEC BC)
+   #(.INC C)       #(.DEC C)       #(.LD C n)      #(.RRC A)
 
-;(def instructions
-;  [;; 00x
-;   #(NOP)          #(LD BC nn)     #(LD (BC) A)    #(INC BC)
-;   #(INC B)        #(DEC B)        #(LD B n)       #(RLC A)
-;   #(LD (nn) SP)   #(ADD HL BC)    #(LD A (BC))    #(DEC BC)
-;   #(INC C)        #(DEC C)        #(LD C n)       #(RRC A)
-;
-;   ;; 10x
-;   #(STOP)         #(LD DE nn)     #(LD (DE) A)    #(INC DE)
-;   #(INC D)        #(DEC D)        #(LD D n)       #(RL A)
-;   #(JR n)         #(ADD HL DE)    #(LD A (DE))    #(DEC DE)
-;   #(INC C)        #(DEC C)        #(LD C n)       #(RRC A)
-;
-;   ;; 20x
-;   #(JR NZ n)      #(LD HL nn)     #(LDI (HL) A)   #(INC HL)
-;   #(INC H)        #(DEC H)        #(LD H n)       #(DAA)
-;   #(JR Z n)       #(ADD HL HL)    #(LDI A (HL))   #(DEC HL)
-;   #(INC L)        #(DEC L)        #(LD L n)       #(CPL)
-;
-;   ])
+   ;; 10x
+   #(STOP)         #(.LD DE nn)    #(.LD (DE) A)   #(.INC DE)
+   #(.INC D)       #(.DEC D)       #(.LD D n)      #(.RL A)
+   #(.JR n)        #(.ADD HL DE)   #(.LD A (DE))   #(.DEC DE)
+   #(.INC C)       #(.DEC C)       #(.LD C n)      #(.RRC A)
+
+   ;; 20x
+   #(.JR NZ n)     #(.LD HL nn)    #(.LDI (HL) A)  #(.INC HL)
+   #(.INC H)       #(.DEC H)       #(.LD H n)      #(.DAA)
+   #(.JR Z n)      #(.ADD HL HL)   #(.LDI A (HL))  #(.DEC HL)
+   #(.INC L)       #(.DEC L)       #(.LD L n)      #(.CPL)
+
+   ])

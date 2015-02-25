@@ -6,5 +6,5 @@
 (deftest test-ld-register
   (testing "Loads a value n into register A"
     (RESET)
-    (LD A 1)
+    (.LD A 1)
     (is (= (read-byte A 1)))))
